@@ -1,5 +1,17 @@
 <template>
-  <div class="board">{{board.title}}</div>
+  <div class="board">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <h1>{{board.title}}</h1>
+        <form>
+          <div class="form-group">
+            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="List" />
+          </div>
+          <button class="btn btn-success">Add List</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -14,6 +26,15 @@ export default {
         }
       );
     }
+  },
+  data() {
+    return {
+      newList: {
+        title: "",
+        authorId: "",
+        boardId: this.boardId
+      }
+    };
   },
   props: ["boardId"]
 };
