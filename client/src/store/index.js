@@ -35,8 +35,8 @@ export default new Vuex.Store({
     setLists(state, lists) {
       state.lists = lists;
     },
-    setTasks(state, task) {
-      state.tasks.push(task);
+    setTasks(state, tasks) {
+      state.tasks = tasks;
     }
   },
   actions: {
@@ -103,9 +103,15 @@ export default new Vuex.Store({
       });
     },
 
+    getTasks({ commit, dispatch }) {
+      api.get("tasks").then(res => {
+        commit("setTasks", res.data);
+      });
+    },
+
     addTask({ commit, dispatch }, taskData) {
       api.post("/tasks", taskData).then(serverTask => {
-        commit("setTasks", serverTask.data);
+        dispatch("getTasks");
       });
     }
 
