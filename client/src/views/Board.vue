@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
-        <list-component :boardData="board._id" />
+      <div class="col-12">
+        <list-component :boardId="this.boardId" />
       </div>
     </div>
   </div>
@@ -24,6 +24,9 @@ import ListComponent from "@/components/List";
 export default {
   name: "board",
   props: ["boardId"],
+  mounted() {
+    this.$store.dispatch("getBoards");
+  },
   computed: {
     board() {
       return (
@@ -38,7 +41,7 @@ export default {
     return {
       newList: {
         title: "",
-        boardId: this.board._id
+        boardId: this.boardId
       }
     };
   },
@@ -46,6 +49,7 @@ export default {
     addList() {
       let list = { ...this.newList };
       this.$store.dispatch("addList", list);
+      console.log(list);
       this.newList = {
         title: ""
       };

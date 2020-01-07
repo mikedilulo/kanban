@@ -89,7 +89,12 @@ export default new Vuex.Store({
     },
 
     addList({ commit, dispatch }, listData) {
-      api.post("lists", listData).then(serverboard => {
+      api.post("lists", listData).then(serverList => {
+        dispatch("getLists");
+      });
+    },
+    deleteList({ commit, dispatch }, id) {
+      api.delete("lists/" + id).then(serverList => {
         dispatch("getLists");
       });
     }
