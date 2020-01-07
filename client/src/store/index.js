@@ -22,7 +22,8 @@ export default new Vuex.Store({
     user: {},
     boards: [],
     lists: [],
-    activeBoard: {}
+    activeBoard: {},
+    tasks: []
   },
   mutations: {
     setUser(state, user) {
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     setLists(state, lists) {
       state.lists = lists;
+    },
+    setTasks(state, tasks) {
+      state.tasks = tasks;
     }
   },
   actions: {
@@ -97,6 +101,14 @@ export default new Vuex.Store({
       api.delete("lists/" + id).then(serverList => {
         dispatch("getLists");
       });
+    },
+
+    addTask({ commit, dispatch }, taskData) {
+      api
+        .post("lists/" + taskData.listId + "/tasks", taskData)
+        .then(serverTask => {
+          commit("setTasks", serverTask.data);
+        });
     }
 
     //#endregion
