@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
-const commentSchema = new Schema({ description: { type: String } });
+const commentSchema = new Schema({
+  content: { type: String },
+  authorId: { type: ObjectId, ref: "User", required: true },
+  taskId: { type: ObjectId, ref: "Task", required: true }
+});
 const Task = new Schema(
   {
     description: { type: String, required: true },

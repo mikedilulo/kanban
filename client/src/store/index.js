@@ -113,6 +113,14 @@ export default new Vuex.Store({
       api.post("/tasks", taskData).then(serverTask => {
         dispatch("getTasks");
       });
+    },
+
+    addComment({ commit, dispatch }, comment) {
+      api.put("tasks/" + comment.taskId, comment).then(serverTask => {
+        console.log(comment);
+        console.log(serverTask);
+        dispatch("getTasks");
+      });
     }
 
     //#endregion

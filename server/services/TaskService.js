@@ -43,6 +43,19 @@ class TaskService {
       throw new ApiError("Invalid ID or you do not own this board", 400);
     }
   }
+  async addCommentByTaskId(id, userId, body) {
+    let data = await _repository.findOneAndUpdate(
+      // $push is a mongoose method, you will pass the body of the child which in this case is comments
+      // new true is the new updated object
+      { _id: id, authorId: userId },
+      { $push: { comments: body } },
+      { new: true }
+    );
+    if (!data) {
+      throw new ApiError("Invalid Comment to Add", 400);
+    }
+    return data;
+  }
 }
 
 const _taskService = new TaskService();

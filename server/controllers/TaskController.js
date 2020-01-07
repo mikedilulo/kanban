@@ -11,6 +11,7 @@ export default class TasksController {
       .get("", this.getAll)
       .get("/:id", this.getById)
       .post("", this.create)
+      .put("/:id", this.addCommentByTaskId)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
       .use(this.defaultRoute);
@@ -68,6 +69,18 @@ export default class TasksController {
     try {
       await _taskService.delete(req.params.id, req.session.uid);
       return res.send("Successfully deleted");
+    } catch (error) {
+      next(error);
+    }
+  }
+  async addCommentByTaskId(req, res, next) {
+    try {
+      let data = await _taskService.addCommentByTaskId(
+        req.params.id,
+        req.session.uid,
+        req.body
+      );
+      return res.status(201).send(data);
     } catch (error) {
       next(error);
     }
