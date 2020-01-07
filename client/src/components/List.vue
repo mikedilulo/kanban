@@ -24,7 +24,9 @@
         </div>
         <div>
           <div class="row">
-            <div class="col-12">task</div>
+            <div class="col-12">
+              <task-component :listId="list.id" />
+            </div>
           </div>
         </div>
       </div>
@@ -33,6 +35,7 @@
 </template>
 
 <script>
+import TaskComponent from "@/components/Task";
 export default {
   name: "List",
   props: ["boardId"],
@@ -66,6 +69,9 @@ export default {
         description: ""
       };
     }
+  },
+  components: {
+    TaskComponent
   }
 };
 </script>

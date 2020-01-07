@@ -35,8 +35,8 @@ export default new Vuex.Store({
     setLists(state, lists) {
       state.lists = lists;
     },
-    setTasks(state, tasks) {
-      state.tasks = tasks;
+    setTasks(state, task) {
+      state.tasks.push(task);
     }
   },
   actions: {
