@@ -1,12 +1,18 @@
 <template>
   <div class="list">
-    <p>Lists!</p>
+    <p>{{list.title}}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "List"
+  name: "List",
+  props: ["boardData"],
+  computed: {
+    list() {
+      return this.$store.state.lists.filter(b => b._id == boardData);
+    }
+  }
 };
 </script>
 

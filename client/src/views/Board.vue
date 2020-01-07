@@ -3,20 +3,27 @@
     <div class="row">
       <div class="col-md-4 mx-auto">
         <h1>{{board.title}}</h1>
-        <form>
+        <form @submit.prevent="addList">
           <div class="form-group">
-            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="List" />
+            <input v-model="newList.title" type="text" class="form-control" placeholder="List" />
           </div>
           <button class="btn btn-success">Add List</button>
         </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <list-component :boardData="board._id" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import ListComponent from "@/components/List";
 export default {
   name: "board",
+  props: ["boardId"],
   computed: {
     board() {
       return (
@@ -31,11 +38,21 @@ export default {
     return {
       newList: {
         title: "",
-        authorId: "",
-        boardId: this.boardId
+        boardId: this.board._id
       }
     };
   },
-  props: ["boardId"]
+  methods: {
+    addList() {
+      let list = { ...this.newList };
+      this.$store.dispatch("addList", list);
+      this.newList = {
+        title: ""
+      };
+    }
+  },
+  components: {
+    ListComponent
+  }
 };
 </script>
