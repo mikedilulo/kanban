@@ -104,11 +104,9 @@ export default new Vuex.Store({
     },
 
     addTask({ commit, dispatch }, taskData) {
-      api
-        .post("lists/" + taskData.listId + "/tasks", taskData)
-        .then(serverTask => {
-          commit("setTasks", serverTask.data);
-        });
+      api.post("/tasks", taskData).then(serverTask => {
+        commit("setTasks", serverTask.data);
+      });
     }
 
     //#endregion

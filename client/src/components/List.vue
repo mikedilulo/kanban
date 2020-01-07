@@ -11,7 +11,13 @@
         <div>
           <form @submit.prevent="addTask(list.id)">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Task" />
+              <input
+                v-model="newTask.description"
+                type="text"
+                class="form-control"
+                placeholder="Task"
+                required
+              />
             </div>
             <button class="btn btn-success">Add Task</button>
           </form>
