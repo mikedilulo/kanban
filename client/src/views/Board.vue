@@ -51,7 +51,8 @@ export default {
       this.$store.dispatch("addList", list);
       console.log(list);
       this.newList = {
-        title: ""
+        title: "",
+        boardId: this.boardId
       };
     }
   },
