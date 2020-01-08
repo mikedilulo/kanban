@@ -20,7 +20,30 @@
         </button>
       </div>
     </form>
-    <p v-for="comment in taskData.comments" :key="comment.id">{{comment.content}}</p>
+    <div
+      v-for="comment in taskData.comments"
+      :key="comment.id"
+      class="d-flex justify-content-between mb-4 mt-4"
+    >
+      <p>{{comment.content}}</p>
+      <div class="dropdown">
+        <button
+          class="btn btn-danger dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
