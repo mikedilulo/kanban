@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <h4>{{listData.title}}</h4>
-    <button class="btn ml-3 btn-danger" @click="deleteList(listData._id)">
+    <button class="btn ml-3 btn-danger" @click="deleteList(listData.id)">
       <i class="fa fa-trash text-white"></i>
     </button>
     <div>
@@ -42,7 +42,7 @@ export default {
       newTask: {
         description: "",
         boardId: this.listData.boardId,
-        listId: this.listData._id
+        listId: this.listData.id
       }
     };
   },

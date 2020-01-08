@@ -1,7 +1,7 @@
 <template>
   <div class="task">
     <h5 class="mt-5">{{taskData.description}}</h5>
-    <form @submit.prevent="addComment(taskData.id)">
+    <form @submit.prevent="addComment()">
       <div class="d-flex">
         <div class="form-group mb-0">
           <input
@@ -17,7 +17,7 @@
         </button>
       </div>
     </form>
-    {{taskData.comments}}
+    <p v-for="comment in taskData.comments" :key="comment.id">{{comment.content}}</p>
   </div>
 </template>
 
@@ -28,21 +28,25 @@ export default {
   data() {
     return {
       newComment: {
-        content: ""
+        content: "",
+        taskId: this.taskData.id
       }
     };
   },
   methods: {
-    addComment(taskId) {
+    addComment() {
       let comment = { ...this.newComment };
-      comment.taskId = taskId;
       this.$store.dispatch("addComment", comment);
+      console.log("comment", comment);
+      this.newComment = {
+        content: ""
+      };
     }
   },
   computed: {
-    comments() {
-      return this.$store.state.tasks.filter(c => c.taskId == this.taskId);
-    }
+    // comments() {
+    //   return this.$store.state.tasks.filter(c => c.taskId == this.taskData.id);
+    // }
   }
 };
 </script>
