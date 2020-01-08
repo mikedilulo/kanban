@@ -1,5 +1,5 @@
 <template>
-  <div class="boards">
+  <div class="boards container-fluid">
     <Nav />WELCOME TO THE BOARDS!!!
     <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required />
@@ -13,7 +13,7 @@
             <h5 class="card-title">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
             </h5>
-            <p class="card-text">{{board.description}}</p>
+            <p class="card-text text-white">{{board.description}}</p>
             <button class="btn btn-danger" @click="deleteBoard(board._id)">Delete Board</button>
           </div>
         </div>
@@ -59,6 +59,7 @@ export default {
 
 <style>
 .card {
+  background: url("https://images.unsplash.com/photo-1558051815-0f18e64e6280?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80");
   border-radius: 15px;
   box-shadow: 5px 5px 20px -5px;
 }
