@@ -3,11 +3,13 @@
     <div class="row">
       <div class="col-md-12 pl-0 pr-0">
         <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-          <p class="navbar-brand m-0">
-            <i class="fas fa-edit mr-2"></i>
-            <img alt="Vue logo" class="img" src="../assets/logo.png" />
-            <span class="text-dark">anban</span>
-          </p>
+          <div>
+            <p class="navbar-brand m-0 bg-light rounded pl-2 pr-2">
+              <i class="fas fa-edit mr-2"></i>
+              <img alt="Vue logo" class="img" src="../assets/logo.png" />
+              <span class="text-dark">anban</span>
+            </p>
+          </div>
           <button
             class="navbar-toggler"
             type="button"
