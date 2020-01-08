@@ -1,14 +1,21 @@
 <template>
-  <div class="board">
+  <div class="board container-fluid bakkground">
+    <Nav />
     <div class="row">
       <div class="col-md-4 mx-auto">
-        <h1>{{board.title}}</h1>
-        <form @submit.prevent="addList">
+        <h1 class="text-light border bg-dark">{{ board.title }}</h1>
+        <!-- NOTE COMMENTED OUT FORM -->
+        <!-- <form @submit.prevent="addList">
           <div class="form-group">
-            <input v-model="newList.title" type="text" class="form-control" placeholder="List" />
+            <input
+              v-model="newList.title"
+              type="text"
+              class="form-control"
+              placeholder="List"
+            />
           </div>
-          <button class="btn btn-success">Add List</button>
-        </form>
+          <button class="btn btn-success d-flex">Add List</button>
+        </form> -->
       </div>
     </div>
     <div class="row">
@@ -24,6 +31,7 @@
 </template>
 
 <script>
+import Nav from "@/components/Nav.vue";
 import ListComponent from "@/components/List";
 export default {
   name: "board",
@@ -53,19 +61,19 @@ export default {
       }
     };
   },
-  methods: {
-    addList() {
-      let list = { ...this.newList };
-      this.$store.dispatch("addList", list);
-      console.log(list);
-      this.newList = {
-        title: "",
-        boardId: this.boardId
-      };
-    }
-  },
   components: {
-    ListComponent
+    ListComponent,
+    Nav
   }
 };
 </script>
+
+<style>
+.bakkground {
+  background: url("https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80")
+    no-repeat center center fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 663px;
+}
+</style>

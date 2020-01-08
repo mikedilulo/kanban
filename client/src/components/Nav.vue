@@ -30,6 +30,11 @@
                   Create Board
                 </button>
               </div>
+              <div v-else-if="this.$route.name == `board`">
+                <button class="btn btn-success mr-3" @click="addList">
+                  Create List
+                </button>
+              </div>
               <li>
                 <button class="btn btn-danger ml-4" @click="logout">
                   Logout
@@ -57,6 +62,17 @@ export default {
       if (boardInfo) {
         this.$store.dispatch("addBoard", boardInfo);
         this.newBoard = { title: "", description: "" };
+      }
+    },
+    async addList() {
+      console.log(this.$route.params.boardId);
+      let listInfo = await NotificationService.inputList("Create A New List");
+      if (listInfo) {
+        this.$store.dispatch("addList", {
+          title: listInfo,
+          boardId: this.$route.params.boardId
+        });
+        this.newList = { title: "" };
       }
     }
   }
