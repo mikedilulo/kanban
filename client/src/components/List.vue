@@ -35,6 +35,7 @@ export default {
   props: ["listData"],
   mounted() {
     this.$store.dispatch("getLists");
+    this.$store.dispatch("getTasks");
   },
   data() {
     return {
@@ -47,9 +48,7 @@ export default {
   },
   computed: {
     tasks() {
-      return this.$store.state.tasks.filter(
-        t => t.listId == this.listData.boardId
-      );
+      return this.$store.state.tasks.filter(t => t.listId == this.listData.id);
     }
   },
   methods: {
@@ -60,7 +59,6 @@ export default {
       let task = { ...this.newTask };
       this.$store.dispatch("addTask", task);
       console.log(task);
-
       this.newTask = {
         description: ""
       };
