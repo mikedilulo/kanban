@@ -32,7 +32,7 @@
 import TaskComponent from "@/components/Task";
 export default {
   name: "List",
-  props: ["boardId", "listData"],
+  props: ["listData"],
   mounted() {
     this.$store.dispatch("getLists");
   },
@@ -45,17 +45,18 @@ export default {
     };
   },
   computed: {
-    lists() {
-      return this.$store.state.lists.filter(l => l.boardId == this.boardId);
+    tasks() {
+      return this.$store.state.tasks.filter(
+        t => t.listId == this.listData.boardId
+      );
     }
   },
   methods: {
-    deleteList(id) {
+    deleteList() {
       this.$store.dispatch("deleteList", id);
     },
-    addTask(id) {
+    addTask() {
       let task = { ...this.newTask };
-      task.listId = id;
       this.$store.dispatch("addTask", task);
       console.log(task);
 

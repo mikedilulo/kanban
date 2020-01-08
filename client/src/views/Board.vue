@@ -13,9 +13,6 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <list-component :boardId="this.boardId" />
-      </div>
-      <div class="col-12">
         <div class="row">
           <div class="col-3" v-for="list in lists" :key="list.id">
             <list-component :listData="list" />
@@ -33,6 +30,7 @@ export default {
   props: ["boardId"],
   mounted() {
     this.$store.dispatch("getBoards");
+    this.$store.dispatch("getLists");
   },
   computed: {
     board() {
