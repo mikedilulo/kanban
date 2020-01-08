@@ -37,6 +37,13 @@ export default new Vuex.Store({
     },
     setTasks(state, tasks) {
       state.tasks = tasks;
+    },
+    resetState(state) {
+      (state.user = {}),
+        (state.boards = []),
+        (state.lists = []),
+        (state.activeBoard = {}),
+        (state.tasks = []);
     }
   },
   actions: {
