@@ -1,33 +1,27 @@
 <template>
   <div class="list">
-    <div class="row">
-      <div class="col-12 col-md-3" v-for="list in lists" :key="list.id">
-        <h4>
-          {{list.title}}
-          <button class="btn ml-3 btn-danger" @click="deleteList(list.id)">
-            <i class="fa fa-trash text-white"></i>
-          </button>
-        </h4>
-        <div>
-          <form @submit.prevent="addTask(list.id)">
-            <div class="form-group">
-              <input
-                v-model="newTask.description"
-                type="text"
-                class="form-control"
-                placeholder="Task"
-                required
-              />
-            </div>
-            <button class="btn btn-success">Add Task</button>
-          </form>
+    <h4>{{listData.title}}</h4>
+    <button class="btn ml-3 btn-danger" @click="deleteList()">
+      <i class="fa fa-trash text-white"></i>
+    </button>
+    <div>
+      <form @submit.prevent="addTask()">
+        <div class="form-group">
+          <input
+            v-model="newTask.description"
+            type="text"
+            class="form-control"
+            placeholder="Task"
+            required
+          />
         </div>
-        <div>
-          <div class="row">
-            <div class="col-12">
-              <task-component :listId="list.id" />
-            </div>
-          </div>
+        <button class="btn btn-success">Add Task</button>
+      </form>
+    </div>
+    <div>
+      <div class="row">
+        <div class="col-12">
+          <task-component />
         </div>
       </div>
     </div>
@@ -38,7 +32,7 @@
 import TaskComponent from "@/components/Task";
 export default {
   name: "List",
-  props: ["boardId"],
+  props: ["boardId", "listData"],
   mounted() {
     this.$store.dispatch("getLists");
   },
