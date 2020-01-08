@@ -13,7 +13,11 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <list-component :boardId="this.boardId" />
+        <div class="row">
+          <div class="col-3" v-for="list in lists" :key="list.id">
+            <list-component :listData="list" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -26,6 +30,7 @@ export default {
   props: ["boardId"],
   mounted() {
     this.$store.dispatch("getBoards");
+    this.$store.dispatch("getLists");
   },
   computed: {
     board() {
@@ -35,6 +40,9 @@ export default {
           title: "Loading..."
         }
       );
+    },
+    lists() {
+      return this.$store.state.lists.filter(l => l.boardId == this.boardId);
     }
   },
   data() {

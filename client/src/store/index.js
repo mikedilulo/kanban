@@ -117,7 +117,6 @@ export default new Vuex.Store({
 
     addComment({ commit, dispatch }, comment) {
       api.put("tasks/" + comment.taskId, comment).then(serverTask => {
-        console.log(comment);
         console.log(serverTask);
         dispatch("getTasks");
       });
