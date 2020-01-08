@@ -127,6 +127,11 @@ export default new Vuex.Store({
         console.log(serverTask);
         dispatch("getTasks");
       });
+    },
+    deleteTask({ commit, dispatch }, id) {
+      api.delete("tasks/" + id).then(serverTask => {
+        dispatch("getTasks");
+      });
     }
 
     //#endregion

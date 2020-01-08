@@ -1,6 +1,9 @@
 <template>
   <div class="task">
     <h5 class="mt-5">{{taskData.description}}</h5>
+    <button class="btn btn-danger" @click="deleteTask(taskData.id)">
+      <i class="fa fa-trash"></i>
+    </button>
     <form @submit.prevent="addComment()">
       <div class="d-flex">
         <div class="form-group mb-0">
@@ -42,6 +45,9 @@ export default {
         content: "",
         taskId: this.taskData.id
       };
+    },
+    deleteTask(id) {
+      this.$store.dispatch("deleteTask", id);
     }
   },
   computed: {
