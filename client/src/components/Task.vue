@@ -39,7 +39,8 @@ export default {
       this.$store.dispatch("addComment", comment);
       console.log("comment", comment);
       this.newComment = {
-        content: ""
+        content: "",
+        taskId: this.taskData.id
       };
     }
   },
