@@ -6,8 +6,20 @@
       <input type="text" placeholder="description" v-model="newBoard.description" />
       <button type="submit">Create Board</button>
     </form>
-    <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+    <div class="row justify-content-around mt-5">
+      <div class="col-sm-3" v-for="board in boards" :key="board._id">
+        <div class="card m-3">
+          <div class="card-body">
+            <h5 class="card-title">
+              <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+            </h5>
+            <p
+              class="card-text"
+            >With supporting text below as a natural lead-in to additional content.</p>
+            <button class="btn btn-danger" @click="deleteBoard(board._id)">Delete Board</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -36,6 +48,9 @@ export default {
     addBoard() {
       this.$store.dispatch("addBoard", this.newBoard);
       this.newBoard = { title: "", description: "" };
+    },
+    deleteBoard(id) {
+      this.$store.dispatch("deleteBoard", id);
     }
   },
   components: {
@@ -43,3 +58,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.card {
+  border-radius: 15px;
+  box-shadow: 5px 5px 20px -5px;
+}
+</style>

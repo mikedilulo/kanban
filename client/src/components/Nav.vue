@@ -6,7 +6,7 @@
           <p class="navbar-brand m-0">
             <i class="fas fa-edit mr-2"></i>
             <img alt="Vue logo" class="img" src="../assets/logo.png" />
-            <span class="text-light">anban</span>
+            <span class="text-dark">anban</span>
           </p>
           <button
             class="navbar-toggler"
@@ -23,7 +23,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-3">
               <!-- NOTE Adding new buttons on one component -->
-              <li v-if="this.$route.name == `boards`">
+              <li>
                 <button class="btn btn-danger ml-4" @click="logout">Logout</button>
               </li>
             </ul>

@@ -90,6 +90,12 @@ export default new Vuex.Store({
         dispatch("getBoards");
       });
     },
+
+    deleteBoard({ commit, dispatch }, id) {
+      api.delete("boards/" + id).then(serverBoard => {
+        dispatch("getBoards");
+      });
+    },
     //#endregion
 
     //#region -- LISTS --
