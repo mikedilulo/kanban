@@ -1,20 +1,25 @@
 <template>
   <div class="boards container-fluid boardback">
-    <Nav />WELCOME TO THE BOARDS!!!
-    <form @submit.prevent="addBoard">
+    <Nav />
+    <!-- <form @submit.prevent="addBoard">
       <input type="text" placeholder="title" v-model="newBoard.title" required />
       <input type="text" placeholder="description" v-model="newBoard.description" />
       <button type="submit">Create Board</button>
-    </form>
+    </form> -->
     <div class="row justify-content-around mt-5">
       <div class="col-sm-3" v-for="board in boards" :key="board._id">
         <div class="card m-3">
           <div class="card-body">
             <h5 class="card-title">
-              <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+              <router-link
+                :to="{ name: 'board', params: { boardId: board._id } }"
+                >{{ board.title }}</router-link
+              >
             </h5>
-            <p class="card-text text-white">{{board.description}}</p>
-            <button class="btn btn-danger" @click="deleteBoard(board._id)">Delete Board</button>
+            <p class="card-text text-white">{{ board.description }}</p>
+            <button class="btn btn-danger" @click="deleteBoard(board._id)">
+              Delete Board
+            </button>
           </div>
         </div>
       </div>
@@ -23,6 +28,7 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService.js";
 import Nav from "@/components/Nav.vue";
 export default {
   name: "boards",

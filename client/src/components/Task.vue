@@ -38,9 +38,8 @@
           <i class="fas fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <button class="dropdown-item">Edit</button>
+          <button class="dropdown-item" @click="deleteComment(comment.content)">Delete</button>
         </div>
       </div>
     </div>
@@ -71,6 +70,9 @@ export default {
     },
     deleteTask(id) {
       this.$store.dispatch("deleteTask", id);
+    },
+    deleteComment(comment) {
+      this.$store.dispatch("deleteComment", comment);
     }
   },
   computed: {

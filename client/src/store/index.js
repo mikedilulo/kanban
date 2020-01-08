@@ -138,6 +138,10 @@ export default new Vuex.Store({
       api.delete("tasks/" + id).then(serverTask => {
         dispatch("getTasks");
       });
+    },
+    deleteComment({ commit, dispatch }, comment) {
+      api.delete("/tasks" + comment.taskId, comment);
+      dispatch("getTasks");
     }
 
     //#endregion

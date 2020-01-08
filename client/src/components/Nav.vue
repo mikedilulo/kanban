@@ -25,8 +25,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto mr-3">
               <!-- NOTE Adding new buttons on one component -->
+              <div v-if="this.$route.name == `boards`">
+                <button class="btn btn-primary mr-3" @click="addBoard">
+                  Create Board
+                </button>
+              </div>
               <li>
-                <button class="btn btn-danger ml-4" @click="logout">Logout</button>
+                <button class="btn btn-danger ml-4" @click="logout">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -37,12 +44,20 @@
 </template>
 
 <script>
+import NotificationService from "../NotificationService.js";
 // File name
 export default {
   name: "Nav",
   methods: {
     logout() {
       this.$store.dispatch("logout");
+    },
+    async addBoard() {
+      let boardInfo = await NotificationService.inputData("Create A New Board");
+      if (boardInfo) {
+        this.$store.dispatch("addBoard", boardInfo);
+        this.newBoard = { title: "", description: "" };
+      }
     }
   }
 };
