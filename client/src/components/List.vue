@@ -60,7 +60,9 @@ export default {
       this.$store.dispatch("addTask", task);
       console.log(task);
       this.newTask = {
-        description: ""
+        description: "",
+        boardId: this.listData.boardId,
+        listId: this.listData.id
       };
     }
   },
