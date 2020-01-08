@@ -13,9 +13,7 @@
             <h5 class="card-title">
               <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
             </h5>
-            <p
-              class="card-text"
-            >With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">{{board.description}}</p>
             <button class="btn btn-danger" @click="deleteBoard(board._id)">Delete Board</button>
           </div>
         </div>
