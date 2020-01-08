@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     <h4>{{listData.title}}</h4>
-    <button class="btn ml-3 btn-danger" @click="deleteList()">
+    <button class="btn ml-3 btn-danger" @click="deleteList(listData._id)">
       <i class="fa fa-trash text-white"></i>
     </button>
     <div>
@@ -20,8 +20,8 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-12">
-          <task-component />
+        <div class="col-12" v-for="task in tasks" :key="task.id">
+          <task-component :taskData="task" />
         </div>
       </div>
     </div>
@@ -40,7 +40,8 @@ export default {
     return {
       newTask: {
         description: "",
-        boardId: this.boardId
+        boardId: this.listData.boardId,
+        listId: this.listData._id
       }
     };
   },
@@ -52,7 +53,7 @@ export default {
     }
   },
   methods: {
-    deleteList() {
+    deleteList(id) {
       this.$store.dispatch("deleteList", id);
     },
     addTask() {
