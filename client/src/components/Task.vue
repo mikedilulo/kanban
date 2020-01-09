@@ -39,7 +39,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <button class="dropdown-item">Edit</button>
-          <button class="dropdown-item" @click="deleteComment(comment.content)">Delete</button>
+          <button class="dropdown-item" @click="deleteComment(comment)">Delete</button>
         </div>
       </div>
     </div>
@@ -72,7 +72,8 @@ export default {
       this.$store.dispatch("deleteTask", id);
     },
     deleteComment(comment) {
-      this.$store.dispatch("deleteComment", comment);
+      let newComment = {...comment, taskId: this.taskData.id}
+      this.$store.dispatch("deleteComment", newComment);
     }
   },
   computed: {

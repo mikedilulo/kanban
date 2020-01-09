@@ -129,10 +129,12 @@ export default new Vuex.Store({
     },
 
     addComment({ commit, dispatch }, comment) {
-      api.put("tasks/" + comment.taskId, comment).then(serverTask => {
-        console.log(serverTask);
-        dispatch("getTasks");
-      });
+      api
+        .put("tasks/" + comment.taskId + "/acomments", comment)
+        .then(serverTask => {
+          console.log(serverTask);
+          dispatch("getTasks");
+        });
     },
     deleteTask({ commit, dispatch }, id) {
       api.delete("tasks/" + id).then(serverTask => {
@@ -140,8 +142,9 @@ export default new Vuex.Store({
       });
     },
     deleteComment({ commit, dispatch }, comment) {
-      api.delete("/tasks" + comment.taskId, comment);
-      dispatch("getTasks");
+      api.put("/tasks/" + comment.taskId + "/dcomments", comment).then(res => {
+        dispatch("getTasks");
+      });
     }
 
     //#endregion
