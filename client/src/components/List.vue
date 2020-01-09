@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <h4>{{listData.title}}</h4>
+    <h4>{{ listData.title }}</h4>
     <button class="btn ml-3 btn-danger" @click="deleteList(listData.id)">
       <i class="fa fa-trash text-white"></i>
     </button>
@@ -20,7 +20,12 @@
     </div>
     <div>
       <div class="row">
-        <div class="col-12" v-for="task in tasks" :key="task.id">
+        <div
+          class="col-12 pb-5 pt-5"
+          v-for="task in tasks"
+          :key="task.id"
+          :id="listData.id"
+        >
           <task-component :taskData="task" />
         </div>
       </div>
@@ -32,7 +37,7 @@
 import TaskComponent from "@/components/Task";
 export default {
   name: "List",
-  props: ["listData"],
+  props: ["listData", "id"],
   mounted() {
     this.$store.dispatch("getLists");
     this.$store.dispatch("getTasks");
@@ -72,5 +77,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

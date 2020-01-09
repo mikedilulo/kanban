@@ -4,18 +4,6 @@
     <div class="row">
       <div class="col-md-4 mx-auto">
         <h1 class="text-light border bg-dark">{{ board.title }}</h1>
-        <!-- NOTE COMMENTED OUT FORM -->
-        <!-- <form @submit.prevent="addList">
-          <div class="form-group">
-            <input
-              v-model="newList.title"
-              type="text"
-              class="form-control"
-              placeholder="List"
-            />
-          </div>
-          <button class="btn btn-success d-flex">Add List</button>
-        </form> -->
       </div>
     </div>
     <div class="row">
@@ -69,11 +57,11 @@ export default {
 </script>
 
 <style>
-.bakkground {
+/* .bakkground {
   background: url("https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80")
     no-repeat center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 663px;
-}
+} */
 </style>
