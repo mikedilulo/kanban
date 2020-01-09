@@ -10,14 +10,20 @@
       <div class="col-sm-3" v-for="board in boards" :key="board._id">
         <div class="card m-3">
           <div class="card-body">
-            <h5 class="card-title">
-              <router-link
-                :to="{ name: 'board', params: { boardId: board._id } }"
-                >{{ board.title }}</router-link
-              >
-            </h5>
-            <p class="card-text text-white">{{ board.description }}</p>
-            <button class="btn btn-danger" @click="deleteBoard(board._id)">
+            <router-link
+              :to="{ name: 'board', params: { boardId: board._id } }"
+            >
+              <div>
+                <h5 class="card-title">
+                  {{ board.title }}
+                </h5>
+                <p class="card-text text-white">{{ board.description }}</p>
+              </div>
+            </router-link>
+            <button
+              class="btn btn-danger delete-btn"
+              @click="deleteBoard(board._id)"
+            >
               Delete Board
             </button>
           </div>
@@ -71,5 +77,10 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 663px;
+}
+.delete-btn {
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
 }
 </style>

@@ -6,8 +6,10 @@
           <div>
             <p class="navbar-brand m-0 bg-light rounded pl-2 pr-2">
               <i class="fas fa-edit mr-2"></i>
-              <img alt="Vue logo" class="img" src="../assets/logo.png" />
-              <span class="text-dark">anban</span>
+              <router-link to="/">
+                <img alt="Vue logo" class="img" src="../assets/logo.png" />
+                <span class="text-dark">anban</span>
+              </router-link>
             </p>
           </div>
           <button
