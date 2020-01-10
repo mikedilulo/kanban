@@ -54,6 +54,9 @@ export default new Vuex.Store({
     },
     setListsByBoard(state, lists) {
       state.lists = lists;
+    },
+    resetLists(state, lists) {
+      state.lists = [];
     }
   },
   actions: {
@@ -113,6 +116,9 @@ export default new Vuex.Store({
       api.get("lists").then(res => {
         commit("setLists", res.data);
       });
+    },
+    resetLists({ commit, dispatch }) {
+      commit("resetLists");
     },
     getListsByBoardId({ commit, dispatch }, id) {
       api.get("boards/" + id + "/lists").then(res => {

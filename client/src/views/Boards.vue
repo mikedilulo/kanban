@@ -30,6 +30,7 @@ import Nav from "@/components/Nav.vue";
 export default {
   name: "boards",
   mounted() {
+    this.$store.dispatch("resetLists");
     this.$store.dispatch("getBoards");
   },
   data() {
