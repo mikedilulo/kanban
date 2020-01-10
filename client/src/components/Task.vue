@@ -1,26 +1,32 @@
 <template>
-  <div class="task" :id="taskData.id">
-    <h5 class="mt-5">{{ taskData.description }}</h5>
-
-    <div class="dropdown">
-      <button class="dropbtn">Dropdown</button>
-      <div class="dropdown-content">
-        <a href="#">Edit Task</a>
-        <a href="#" @click="deleteTask(taskData.id)">Delete Task</a>
-        <div class="sub-dropdown">
-          <button class="sub-dropbtn">Move To</button>
-          <div class="sub-dropdown-content">
-            <p
-              v-for="list in lists"
-              :key="list.id"
-              @click="updateListId(list.id)"
-            >
-              {{ list.title }}
-            </p>
+  <div class="task p-2 border" :id="taskData.id">
+    <i class="pin"></i>
+    <div class="text-right">
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fas fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-content text-left">
+          <a href="#">Edit Task</a>
+          <a href="#" @click="deleteTask(taskData.id)">Delete Task</a>
+          <div class="sub-dropdown w-100">
+            <a class="sub-dropbtn">Move To</a>
+            <div class="sub-dropdown-content">
+              <a
+                href="#"
+                v-for="list in lists"
+                :key="list.id"
+                @click="updateListId(list.id)"
+              >{{ list.title }}</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="text-center">
+      <h5>{{ taskData.description }}</h5>
+    </div>
+
     <form @submit.prevent="addComment()">
       <div class="d-flex">
         <div class="form-group mb-0">
@@ -45,7 +51,7 @@
       <p>{{ comment.content }}</p>
       <div class="dropdown">
         <button
-          class="btn btn-danger dropdown-toggle"
+          class="btn p-0"
           type="button"
           id="dropdownMenuButton"
           data-toggle="dropdown"
@@ -56,9 +62,7 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <button class="dropdown-item">Edit</button>
-          <button class="dropdown-item" @click="deleteComment(comment)">
-            Delete
-          </button>
+          <button class="dropdown-item" @click="deleteComment(comment)">Delete</button>
         </div>
       </div>
     </div>
@@ -110,12 +114,18 @@ export default {
 </script>
 
 <style>
+.task {
+  background-color: #ffc;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  min-height: 10em;
+}
+#dropdownMenuButton {
+  background-color: transparent;
+}
 .dropbtn,
 .sub-dropbtn {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  background-color: transparent;
+  cursor: pointer;
   border: none;
 }
 .dropdown,
@@ -125,39 +135,91 @@ export default {
 }
 .dropdown-content,
 .sub-dropdown-content {
+  border-radius: 10px;
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
+  background-color: #d5dfff;
+  min-width: 8em;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  z-index: 2;
+  right: 35%;
 }
 .sub-dropdown-content {
-  left: 50%;
+  right: 65%;
 }
 .dropdown-content a,
 .sub-dropdown-content a {
   color: black;
-  padding: 12px 16px;
+  padding: 0.7em 0.9em;
   text-decoration: none;
   display: block;
 }
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
+.dropdown-content a:hover,
 .sub-dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #e1e5f5;
 }
+.dropdown:hover .dropdown-content,
 .sub-dropdown:hover .sub-dropdown-content {
   display: block;
 }
+.dropdown:hover .dropbtn,
 .sub-dropdown:hover .sub-dropbtn {
-  background-color: #3e8e41;
+  background-color: #e1e5f5;
+}
+
+.pin {
+  background-color: #aaa;
+  display: block;
+  height: 14px;
+  width: 2px;
+  position: absolute;
+  left: 50%;
+  top: -1px;
+  z-index: 1;
+}
+
+.pin:after {
+  background-color: #a31;
+  background-image: radial-gradient(
+    25% 25%,
+    circle,
+    hsla(0, 0%, 100%, 0.3),
+    hsla(0, 0%, 0%, 0.3)
+  );
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.1),
+    inset 3px 3px 3px hsla(0, 0%, 100%, 0.2),
+    inset -3px -3px 3px hsla(0, 0%, 0%, 0.2),
+    13px 12px 3px hsla(0, 0%, 0%, 0.15);
+  content: "";
+  height: 12px;
+  left: -5px;
+  position: absolute;
+  top: -12px;
+  width: 12px;
+}
+
+.pin:before {
+  background-color: hsla(0, 0%, 0%, 0.1);
+  box-shadow: 0 0 0.25em hsla(0, 0%, 0%, 0.1);
+  content: "";
+
+  height: 18px;
+  width: 2px;
+  left: 0;
+  position: absolute;
+  top: 4px;
+
+  transform: rotate(40.5deg);
+  -moz-transform: rotate(40.5deg);
+  -webkit-transform: rotate(40.5deg);
+  -o-transform: rotate(40.5deg);
+  -ms-transform: rotate(40.5deg);
+
+  transform-origin: 35% 100%;
+  -moz-transform-origin: 35% 100%;
+  -webkit-transform-origin: 35% 100%;
+  -ms-transform-origin: 35% 100%;
+  -o-transform-origin: 35% 100%;
 }
 </style>

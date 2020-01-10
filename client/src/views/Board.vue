@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-12">
         <div class="row">
-          <div class="col-3" v-for="list in lists" :key="list.id">
+          <div class="col-12 col-sm-4 col-lg-3" v-for="list in lists" :key="list.id">
             <list-component :listData="list" />
           </div>
         </div>
@@ -57,6 +57,9 @@ export default {
 </script>
 
 <style>
+.board {
+  min-height: 100vh;
+}
 /* .bakkground {
   background: url("https://images.unsplash.com/photo-1517757910079-f57fd7f49a91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=748&q=80")
     no-repeat center center fixed;
