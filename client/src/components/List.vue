@@ -1,9 +1,11 @@
 <template>
-  <div class="list">
+  <div class="list border p-2">
+    <div class="text-right">
+      <button class="btn btn-danger trash-btn" @click="deleteList(listData.id)">
+        <i class="fas fa-trash-alt text-white"></i>
+      </button>
+    </div>
     <h4>{{ listData.title }}</h4>
-    <button class="btn ml-3 btn-danger" @click="deleteList(listData.id)">
-      <i class="fa fa-trash text-white"></i>
-    </button>
     <div>
       <form @submit.prevent="addTask()">
         <div class="form-group">
@@ -15,13 +17,13 @@
             required
           />
         </div>
-        <button class="btn btn-success">Add Task</button>
+        <button class="btn btn-success mb-1">Add Task</button>
       </form>
     </div>
     <div>
       <div class="row">
         <div
-          class="col-12 pb-5 pt-5"
+          class="col-12 pb-1 pt-1 mt-2 mb-2"
           v-for="task in tasks"
           :key="task.id"
           :id="listData.id"
@@ -77,4 +79,13 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list {
+  padding-bottom: 8em;
+}
+
+.trash-btn {
+  font-size: 0.8em;
+  padding: 0.1em 0.3em;
+}
+</style>
