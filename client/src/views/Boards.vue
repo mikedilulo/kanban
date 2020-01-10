@@ -5,27 +5,18 @@
       <input type="text" placeholder="title" v-model="newBoard.title" required />
       <input type="text" placeholder="description" v-model="newBoard.description" />
       <button type="submit">Create Board</button>
-    </form> -->
+    </form>-->
     <div class="row justify-content-around mt-5">
       <div class="col-sm-3" v-for="board in boards" :key="board._id">
         <div class="card m-3">
           <div class="card-body">
-            <router-link
-              :to="{ name: 'board', params: { boardId: board._id } }"
-            >
+            <router-link :to="{ name: 'board', params: { boardId: board._id } }">
               <div>
-                <h5 class="card-title">
-                  {{ board.title }}
-                </h5>
-                <p class="card-text text-white">{{ board.description }}</p>
+                <h3 class="card-title">{{ board.title }}</h3>
+                <p class="card-text">{{ board.description }}</p>
               </div>
             </router-link>
-            <button
-              class="btn btn-danger delete-btn"
-              @click="deleteBoard(board._id)"
-            >
-              Delete Board
-            </button>
+            <button class="btn btn-danger delete-btn" @click="deleteBoard(board._id)">Delete Board</button>
           </div>
         </div>
       </div>
@@ -66,10 +57,16 @@ export default {
 </script>
 
 <style>
+a:hover {
+  text-decoration: none;
+}
 .card {
   background: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
   border-radius: 15px;
   box-shadow: 5px 5px 20px -5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  min-height: 10em;
 }
 .boardback {
   background: url("https://images.unsplash.com/photo-1558051815-0f18e64e6280?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80")
@@ -81,6 +78,7 @@ export default {
 .delete-btn {
   position: absolute;
   right: 50%;
+  bottom: -10%;
   transform: translateX(50%);
 }
 </style>
