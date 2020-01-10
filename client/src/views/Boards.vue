@@ -62,7 +62,8 @@ a:hover {
   text-decoration: none;
 }
 .card {
-  background: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80");
+  background: url("https://images.unsplash.com/photo-1472289065668-ce650ac443d2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80")
+    no-repeat;
   border-radius: 15px;
   box-shadow: 5px 5px 20px -5px;
   font-family: "Montserrat", sans-serif;
@@ -73,7 +74,6 @@ a:hover {
   background: url("https://images.unsplash.com/photo-1558051815-0f18e64e6280?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=749&q=80")
     no-repeat center center fixed;
   background-size: cover;
-  background-repeat: no-repeat;
   min-height: 663px;
 }
 .delete-btn {
