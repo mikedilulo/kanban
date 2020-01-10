@@ -39,9 +39,8 @@
 import TaskComponent from "@/components/Task";
 export default {
   name: "List",
-  props: ["listData", "id"],
+  props: ["listData"],
   mounted() {
-    this.$store.dispatch("getLists");
     this.$store.dispatch("getTasks");
   },
   data() {
@@ -56,6 +55,8 @@ export default {
   computed: {
     tasks() {
       return this.$store.state.tasks.filter(t => t.listId == this.listData.id);
+      // NOTE DICTIONARY EXAMPLE
+      // return this.$store.state.tasks[list.id];
     }
   },
   methods: {

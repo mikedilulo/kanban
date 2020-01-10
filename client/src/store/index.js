@@ -23,6 +23,8 @@ export default new Vuex.Store({
     boards: [],
     lists: [],
     activeBoard: {},
+    // NOTE DICTIONARY EXAMPLE
+    // tasks:
     tasks: []
   },
   mutations: {
@@ -43,7 +45,15 @@ export default new Vuex.Store({
         (state.boards = []),
         (state.lists = []),
         (state.activeBoard = {}),
+        // NOTE DICTIONARY EXAMPLE
         (state.tasks = []);
+    },
+    // NOTE DICTIONARY EXAMPLE
+    setTaskByList(state, listId, task) {
+      Vue.set(state.tasks, listId, task);
+    },
+    setListsByBoard(state, lists) {
+      state.lists = lists;
     }
   },
   actions: {
@@ -102,6 +112,18 @@ export default new Vuex.Store({
     getLists({ commit, dispatch }) {
       api.get("lists").then(res => {
         commit("setLists", res.data);
+      });
+    },
+    getListsByBoardId({ commit, dispatch }, id) {
+      api.get("boards/" + id + "/lists").then(res => {
+        commit("setListsByBoard", res.data);
+        console.log(res.data);
+      });
+    },
+    // NOTE DICTIONARY EXAMPLE
+    getTasksByList({ commit, dispatch }, id) {
+      api.get("tasks/" + id).then(res => {
+        commit("setTaskByList", res.data);
       });
     },
 

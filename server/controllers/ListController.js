@@ -10,6 +10,7 @@ export default class ListsController {
       .use(Authorize.authenticated)
       .get("", this.getAll)
       .get("/:id", this.getById)
+      // .get("/:id/tasks", this.getTasksByListId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)

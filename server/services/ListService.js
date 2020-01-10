@@ -8,6 +8,13 @@ class ListService {
   async getAll(userId) {
     return await _repository.find({ authorId: userId });
   }
+  async getListsByBoardId(id) {
+    let data = await _repository.find({ boardId: id });
+    if (!data) {
+      throw new ApiError("Invalid List for Board", 400);
+    }
+    return data;
+  }
 
   async getById(id, userId) {
     let data = await _repository.findOne({ _id: id, authorId: userId });

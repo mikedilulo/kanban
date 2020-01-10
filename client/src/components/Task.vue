@@ -105,9 +105,7 @@ export default {
   },
   computed: {
     lists() {
-      return this.$store.state.lists.filter(
-        l => l.boardId == this.taskData.boardId
-      );
+      return this.$store.state.lists;
     }
   }
 };

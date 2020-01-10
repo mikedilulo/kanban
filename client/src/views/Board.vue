@@ -26,7 +26,8 @@ export default {
   props: ["boardId"],
   mounted() {
     this.$store.dispatch("getBoards");
-    this.$store.dispatch("getLists");
+    this.$store.dispatch("getListsByBoardId", this.boardId);
+    console.log(this.boardId);
   },
   computed: {
     board() {
@@ -38,7 +39,8 @@ export default {
       );
     },
     lists() {
-      return this.$store.state.lists.filter(l => l.boardId == this.boardId);
+      // return this.$store.state.lists.filter(l => l.boardId == this.boardId);
+      return this.$store.state.lists;
     }
   },
   data() {
